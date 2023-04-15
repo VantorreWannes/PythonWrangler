@@ -9,14 +9,15 @@ class FunnyFunctions:
 
 class TestFunnyFunctions:
 
-    @test
+    @test(True)
     def test_find_square_circumference():
         result = FunnyFunctions.funny_function([4, 4, 4])
-        affirm(result >= 0)
+        affirm(False)
 
+    @test()
     def pitagoras(a, b):
         result = FunnyFunctions.funny_function_2(a, b)
-        affirm(result <= 0)
+        affirm(True)
     
 def not_wrapped():
     return None
