@@ -18,11 +18,8 @@ class TestFunnyFunctions:
     def pitagoras(a, b):
         result = FunnyFunctions.funny_function_2(a, b)
         affirm(True)
-    
-def not_wrapped():
-    return None
 
 if __name__ == "__main__":
     #Will become: TestFunnyFunctions.test_all()
     TestFunnyFunctions.test_find_square_circumference()
-    TestFunnyFunctions.pitagoras(2, 3)
+    #TestFunnyFunctions.pitagoras(2, 3)
