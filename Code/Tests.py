@@ -13,6 +13,7 @@ class TestFunnyFunctions:
     def test_find_square_circumference():
         result = FunnyFunctions.funny_function([4, 4, 4])
         affirm(False)
+        print("done")
 
     @test()
     def pitagoras(a, b):
