@@ -3,7 +3,6 @@ import time
 
 class LogLevel(Enum):
     INFO = 1
-    OK = 2
     ERROR = 3
     QUIET = 100000
 
@@ -27,9 +26,6 @@ class Log:
     
     def error(self, text):
         self.print_log(LogLevel.ERROR, text)
-    
-    def ok(self, text):
-        self.print_log(LogLevel.OK, text)
 
 
 if __name__ == "__main__":

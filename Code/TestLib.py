@@ -1,56 +1,71 @@
-import inspect
-from Logging import Log, LogLevel
+import sys
+import types
 
 
 class AffirmIsFalse(BaseException):
     # Exception raised if the result of the affirm function is False.
     def __init__(self, message="Affirm retured False!"):
         self.message = message
-        super().__init__(self.message)
+        self.value = False
 
-
-def affirm_ne(item, item2):
-    if not item != item2:
-        raise AffirmIsFalse()
-
-
-def affirm_eq(item, item2):
-    if not item == item2:
-        raise AffirmIsFalse()
-
-
-def affirm(item):
-    caller_function = inspect.getframeinfo(
-        inspect.currentframe().f_back).function
-    is_test = hasattr(caller_function, "is_test")
-    if not item:
-        if is_test:
-            raise AffirmIsFalse()
-        else:
-            caller_function.log.error("Affirm failed.")
-            return None
-    else:
-        caller_function.log.ok("Affirm Test succeeded..")
-        return None
-
-
-# function decorator to be applied to any function you want to test in
-def test(func, crash_on_error=False, verbose=True):
+# function wrapper
+def test(func):
     def wrapper(*args, **kwargs):
         try:
             func(*args, **kwargs)
-            wrapper.log.ok("Test succeeded.")
-        except AffirmIsFalse as e:
-            wrapper.log.error("Test failed.")
-            if wrapper.crash_on_error:
-                raise e
-
-    wrapper.log = Log(
-        func.__name__, LogLevel=LogLevel.INFO if verbose else LogLevel.QUIET)
-    wrapper.is_test = True
-    wrapper.crash_on_error = crash_on_error
+            if wrapper.verbose:
+                print(f"|OK|: {func.__name__}")
+        except AffirmIsFalse as err:
+            if wrapper.verbose:
+                print(f"|ER|: {func.__name__}")
+            if wrapper.crash_on_false:
+                traceback = sys.exc_info()[2]
+                back_frame = traceback.tb_frame.f_back # each .f_back skips one call
+                back_tb = types.TracebackType(tb_next=None,
+                                            tb_frame=back_frame,
+                                            tb_lasti=back_frame.f_lasti,
+                                            tb_lineno=back_frame.f_lineno)
+                raise err.with_traceback(back_tb)
+    wrapper.crash_on_false = True
+    wrapper.verbose = True
     return wrapper
+
+def affirm_ne(item, item2, error_message="Affirm_ne returned False."):
+    try:
+        assert item != item2
+    except AssertionError:
+        traceback = sys.exc_info()[2]
+        back_frame = traceback.tb_frame.f_back # each .f_back skips one call
+        back_tb = types.TracebackType(tb_next=None,
+                                    tb_frame=back_frame,
+                                    tb_lasti=back_frame.f_lasti,
+                                    tb_lineno=back_frame.f_lineno)
+        raise AffirmIsFalse(error_message).with_traceback(back_tb)
+
+def affirm_eq(item, item2, error_message="Affirm_eq returned False."):
+    try:
+        assert item == item2
+    except AssertionError:
+        traceback = sys.exc_info()[2]
+        back_frame = traceback.tb_frame.f_back # each .f_back skips one call
+        back_tb = types.TracebackType(tb_next=None,
+                                    tb_frame=back_frame,
+                                    tb_lasti=back_frame.f_lasti,
+                                    tb_lineno=back_frame.f_lineno)
+        raise AffirmIsFalse(error_message).with_traceback(back_tb)
+
+def affirm(item, error_message="Affirm returned False."):
+    try:
+        assert item
+    except AssertionError:
+        traceback = sys.exc_info()[2]
+        back_frame = traceback.tb_frame.f_back # each .f_back skips one call
+        back_tb = types.TracebackType(tb_next=None,
+                                    tb_frame=back_frame,
+                                    tb_lasti=back_frame.f_lasti,
+                                    tb_lineno=back_frame.f_lineno)
+        raise AffirmIsFalse(error_message).with_traceback(back_tb)
 
 
 if __name__ == "__main__":
-    pass
+    affirm(False)
