@@ -1,8 +1,8 @@
-from TestDecorators import test, test_class
-from Affirms import affirm, affirm_eq, affirm_ne
 import sys
 sys.path.append(
     r'C:\Users\Wannes\Desktop\JokNavi\2023\Coding\Python\PythonWrangler\V1')
+from TestDecorators import test, test_class
+from Affirms import affirm, affirm_eq, affirm_ne
 
 
 class StupidClass:
@@ -12,7 +12,7 @@ class StupidClass:
 
     def append(self, text, string):
         return text + string
-
+    
 
 @test_class
 class TestStupidClass:
