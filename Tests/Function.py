@@ -1,5 +1,5 @@
 import sys
-sys.path.append(r'C:\Users\Wannes\Desktop\JokNavi\2023\Coding\Python\PythonWrangler')
+sys.path.append(r'YOUR PATH HERE')
 from Affirms import affirm, affirm_eq, affirm_ne
 from TestDecorators import test
 
