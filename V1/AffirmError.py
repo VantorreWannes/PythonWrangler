@@ -19,11 +19,10 @@ class AffirmIsFalse(BaseException):
                                        tb_frame=back_frame,
                                        tb_lasti=back_frame.f_lasti,
                                        tb_lineno=back_frame.f_lineno)
-    
-    def raise_to_level(self, amount = 1):
+
+    def raise_to_level(self, amount=1):
         traceback = self.get_trunicated_traceback(amount+1)
         raise self.with_traceback(traceback)
-
 
 
 if __name__ == "__main__":
