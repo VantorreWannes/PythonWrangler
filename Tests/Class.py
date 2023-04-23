@@ -28,10 +28,11 @@ class TestStupidClass:
         append_result = SC.append("Hi", " i'm nav!")
         affirm_eq(append_result, "Hi i'm nav")
 
+
     def test_print(self):
         print("this won't print")
 
 
 if __name__ == "__main__":
     TSC = TestStupidClass()
-    TSC.test_all(False)
+    TSC.test_all(crash_on_false=False, verbose=True)
