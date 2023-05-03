@@ -1,7 +1,7 @@
 import sys
 sys.path.append(r'YOUR PATH HERE')
-from Affirms import affirm, affirm_eq, affirm_ne
-from TestDecorators import test
+from OLD.Affirms import affirm, affirm_eq, affirm_ne
+from OLD.TestDecorators import test
 
 
 

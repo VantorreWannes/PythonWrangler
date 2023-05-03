@@ -64,7 +64,7 @@ This library includes decorators and affirm functions that can be used to write 
    def test_function_3():
        is_larger_than = function_to_be_tested_3(6, 5)
        affirm(is_larger_than)
-   \```
+   ```
 
 7. To run all tests, use the `test_all()` command:
 
