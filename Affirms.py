@@ -21,6 +21,8 @@ def affirm(item, error_message="Affirm returned False."):
     except AssertionError:
         AffirmIsFalse(error_message).raise_to_level(2)
 
+def test():
+    print("hi")
 
 if __name__ == "__main__":
     affirm(False)

@@ -4,35 +4,40 @@ from TestDecorators import test, test_class
 from Affirms import affirm, affirm_eq, affirm_ne
 
 
-class StupidClass:
-
-    def add(self, left, right):
+def function_to_be_tested_1(left, right):
         return left + right
 
-    def append(self, text, string):
+def function_to_be_tested_2(text, string):
         return text + string
-    
+
+
+def function_to_be_tested_3(left, right):
+    return left > right
 
 @test_class
-class TestStupidClass:
+class InsertClassHereTests:
 
     @test
-    def test_add(self):
-        SC = StupidClass()
-        add_result = SC.add(1, 5)
+    def test_function_1(self):
+        add_result = function_to_be_tested_1(1, 5)
         affirm_eq(add_result, 6)
 
     @test
-    def test_append(self):
-        SC = StupidClass()
-        append_result = SC.append("Hi", " i'm nav!")
+    def test_function_2(self):
+        append_result = function_to_be_tested_2("Hi", " i'm nav!")
         affirm_eq(append_result, "Hi i'm nav")
 
 
-    def test_print(self):
+    def other_function_1(self):
         print("this won't print")
+
+@test
+def test_function_3():
+    is_larger_than = function_to_be_tested_3(6, 5)
+    affirm(is_larger_than)
 
 
 if __name__ == "__main__":
-    TSC = TestStupidClass()
-    TSC.test_all(crash_on_false=False, verbose=True)
+    InsertClassHereTests().test_all() #"crash_on_false" and "verbose" are 2 parameters both are set to True when left out.
+    test_function_3() # the decorators are non configurable
+
