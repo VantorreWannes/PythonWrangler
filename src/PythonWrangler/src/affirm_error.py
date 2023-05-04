@@ -23,14 +23,10 @@ class AffirmError(Exception):
                                    tb_lasti=back_frame.f_lasti,
                                    tb_lineno=back_frame.f_lineno)
 
-    def __get_trunicated_error(self, amount):
+    def get_trunicated_error(self, amount=0):
         traceback = self.__get_new_traceback()
         trunicated_traceback = self.__trunicate_traceback(traceback, amount+3)
         return self.with_traceback(trunicated_traceback)
-    
-    def raise_to_level(self, amount=0):
-        raise self.__get_trunicated_error(amount)
-
 
 if __name__ == "__main__":
-    AffirmError("Affirm returned False!").raise_to_level()
+    raise AffirmError("Affirm returned False!").get_trunicated_error()
