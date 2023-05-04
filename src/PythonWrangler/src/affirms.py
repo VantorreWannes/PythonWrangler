@@ -19,7 +19,7 @@ def affirm(contition: bool):
     if not isinstance(contition, bool):
         raise TypeError("Test condition should be of type: bool.")
     if not contition:
-        raise AffirmError("Affirm is False.").get_trunicated_error(1)
+        raise AffirmError("Affirm is False.").get_trunicated_error()
 
 def affirm_eq(item_one, item_two):
     if not item_one == item_two:
@@ -31,5 +31,5 @@ def affirm_ne(item_one, item_two):
 
 if __name__ == "__main__":
     affirm_eq(IndexError, IndexError)
-    affirm_ne(IndexError(), IndexError)
+    affirm_ne(IndexError, IndexError)
 
