@@ -1,4 +1,6 @@
-from affirm_error import AffirmError
+import sys
+sys.path.append(r"src\python_wrangler")
+from _affirm_error import AffirmError
 
 
 def raises(function: object, expected_exception: Exception, *args, **kwargs):

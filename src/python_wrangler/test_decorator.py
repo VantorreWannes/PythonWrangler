@@ -1,5 +1,5 @@
 import functools
-from affirm_error import AffirmError
+from _affirm_error import AffirmError
 
 
 def _test_function(func, crash_on_false: bool, verbose: bool,  *args, **kwargs):

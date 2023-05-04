@@ -1,20 +1,7 @@
-# PythonWrangler tests!
-## Introduction
-
-This library includes decorators and affirm functions that can be used to write unit tests in Python. 
-All tools provided in this package are designed to be easy to use and well suited for newer developers.
-
-### Dependencies
-
-- Python 3.x
-- Pypi
+from python_wrangler.affirms import affirm, affirm_eq, affirm_ne
+from python_wrangler.test_decorator import test
 
 
-### Example
-
-Here are some quick examples of how to use the program:
-
-```py
 def add_function_to_be_tested(left, right):
     return left + right
 
@@ -44,5 +31,5 @@ class AddFunctionTests:
 if __name__ == "__main__":
     test_function_1() 
     test_function_2() # @test wrapped functions propegate their traceback upwards to the line they are called from
-    test_function_3()
-```
+    test_class = AddFunctionTests()
+    test_class.test_function_3()
