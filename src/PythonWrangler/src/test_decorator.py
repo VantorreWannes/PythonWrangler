@@ -34,27 +34,6 @@ def test(obj):
             wrapped_function._test_function(obj, True, True, *args, **kwargs)
         wrapped_function._test_function = _test_function
         return wrapped_function
-
-# @test
-# def my_function_1():
-#     pass
-
-# @test
-# def my_function_2():
-#     affirm(False)
-
-# @test
-# class MyClass1:
-
-#     @test
-#     def my_function_3():
-#         pass
-
-#     @test
-#     def my_function_4():
-#         affirm(False)
-
-#     def my_function_5():
-#         affirm(False)
-
-# MyClass1().test_all()
+    
+if __name__ == "__main__":
+    pass
