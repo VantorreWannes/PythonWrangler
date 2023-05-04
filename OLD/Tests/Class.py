@@ -1,7 +1,7 @@
 import sys
 sys.path.append(r'YOUR PATH HERE')
-from TestDecorators import test, test_class
-from Affirms import affirm, affirm_eq, affirm_ne
+from OLD.TestDecorators import test, test_class
+from OLD.Affirms import affirm, affirm_eq, affirm_ne
 
 
 def function_to_be_tested_1(left, right):
