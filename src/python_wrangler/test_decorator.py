@@ -25,7 +25,7 @@ def test(obj):
     if isinstance(obj, type):
         @functools.wraps(obj)
         def wrapped_class(*args, **kwargs):
-            return obj
+            return obj(*args, **kwargs)
         setattr(obj, "test_all", classmethod(_test_all))
         return wrapped_class
     else:

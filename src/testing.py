@@ -31,5 +31,4 @@ class AddFunctionTests:
 if __name__ == "__main__":
     test_function_1() 
     test_function_2() # @test wrapped functions propegate their traceback upwards to the line they are called from
-    test_class = AddFunctionTests()
-    test_class.test_function_3()
+    AddFunctionTests().test_function_3()
