@@ -6,7 +6,7 @@ from _test_functions import TestMethod, TestFunction
 
 def function_wrapper(func):
     def wrapper(*args, **kwargs):
-        return TestMethod(func, True, True).test(*args, **kwargs)
+        return TestFunction(func, True, True).test(*args, **kwargs)
     return wrapper
 
 def method_wrapper(func):
@@ -28,5 +28,5 @@ class MyClass:
     
 if __name__ == "__main__":
     my_function_value, my_method_value = my_function(10), MyClass().my_method(5)
-    print("return value:", my_function_value)
-    print("return value:", my_method_value)
+    print("my_function_value return value:", my_function_value)
+    print("my_method_value return value:", my_method_value)

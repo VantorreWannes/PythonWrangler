@@ -6,8 +6,13 @@ class _TestFunctionsIterface(ABC):
 
     def __init__(self, func, crash_on_false: bool, verbose: bool) -> None:
         self._func = func
+        self._function_path = self._get_function_path()
         self._crash_on_false = crash_on_false
         self._verbose = verbose
+    
+    def _get_function_path(self):
+        function_path: str = self._func.__qualname__
+        return [part for part in function_path.split(".")]
 
     @abstractmethod
     def _print_result(self, prefix: str):
@@ -33,7 +38,8 @@ class TestFunction(_TestFunctionsIterface):
         super().__init__(func, crash_on_false, verbose)
     
     def _print_result(self, prefix: str):
-        print(f"|{prefix}|: {self._func.__name__}")
+        function_path = "::".join(self._function_path)
+        print(f"|{prefix}|: {function_path}")
 
     def test(self, *args, **kwargs):
         try:
@@ -50,7 +56,8 @@ class TestMethod(_TestFunctionsIterface):
         super().__init__(func, crash_on_false, verbose)
     
     def _print_result(self, prefix: str):
-        print(f"|{prefix}|: {self._func.__name__}")
+        method_path = "::".join(self._function_path)
+        print(f"|{prefix}|: {method_path}")
 
     def test(self, *args, **kwargs):
         try:
