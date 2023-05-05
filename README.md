@@ -1,48 +1,93 @@
-# PythonWrangler tests!
-## Introduction
+# **PythonWrangler**
 
 This library includes decorators and affirm functions that can be used to write unit tests in Python. 
 All tools provided in this package are designed to be easy to use and well suited for newer developers.
 
-### Dependencies
+### `Dependencies`
 
 - Python 3.x
 - Pypi
 
 
-### Example
+# Examples
+Written below are some quick examples on each of the tools provided inside the PythonWrangler package.
 
-Here are some quick examples of how to use the program:
-
+### **!!** `First do this:` **!!**
+Import the commands from the package as follows.<br>
 ```py
-def add_function_to_be_tested(left, right):
-    return left + right
-
-add_result = add_function_to_be_tested(1, 5)
-affirm(add_result == 6) # affirm functions check if the statement equates to True. And by default they will crash on False.
-
-def test_function_1():
-    add_result = add_function_to_be_tested(1, 5)
-    affirm(add_result > 0) # This function is not decorated with @test and therefore works exactly like the 2 statements above test_function_1()
-
-@test # Functions can be decorated with @test to make them print their outcome, OK or ER; after running.
-def test_function_2():
-    add_result = add_function_to_be_tested(1, 5)
-    affirm_eq(add_result, 6) # affirm_eq() behaves like affirm but will its outcome be decided by if the two parameters are equal.
-
-@test # Classes can also be wrapped with @test in order to add a special method to them, test_all().
-class AddFunctionTests:
-
-    @test
-    def test_function_3(self):
-        add_result = add_function_to_be_tested(1, 5)
-        affirm_ne(add_result, -1) 
-    
-    def not_a_test_function(self):
-        print("this won't print on test_all()")
-    
-if __name__ == "__main__":
-    test_function_1() 
-    test_function_2() # @test wrapped functions propegate their traceback upwards to the line they are called from
-    test_function_3()
+from python_wrangler import affirm, affirm_eq, affirm_ne, test
 ```
+### `Info:`
+For clarity's sake; I'll be using this definition of function_to_be_tested to run our tests on.
+```py
+def function_to_be_tested(left, right):
+    return left + right
+```
+
+**All examples from now on have this code attached.** <br>
+*These 4 lines have been left out of each following example.*
+```py
+from python_wrangler import affirm, affirm_eq, affirm_ne, test
+
+def function_to_be_tested(left, right):
+    return left + right
+```
+
+### `affirm:`
+- Does nothing if the statement equates to True.
+- Crashes if the statement equates to False. (Raises AffirmError)
+- Doesn't log anything.
+```py
+result = function_to_be_tested(1, 5) # result is 6
+affirm(result > 5) # Is True, does nothing
+affirm(result == 6) # Is True, does nothing
+affirm(result < 0) # Is False, crashes
+```
+
+### `affirm_eq:`
+- Does nothing if the 2 statements are equal.
+- Crashes if the 2 statements are not equal. (Raises AffirmError)
+- Doesn't log anything.
+```py
+result = function_to_be_tested(1, 5) # result is 6
+affirm_eq(result, 6) # Is equal, does nothing
+affirm_eq(result, 10) # Is not equal, crashes
+```
+
+### `affirm_ne:`
+- Opposite of `affirm_eq`.
+- Does nothing if the 2 statements are not equal.
+- Crashes if the 2 statements are equal. (Raises AffirmError)
+- Doesn't log anything.
+```py
+result = function_to_be_tested(1, 5) # result is 6
+affirm_ne(result, 10) # Is not equal, does nothing
+affirm_ne(result, 6) # Is equal, crashes
+```
+
+### `@test:` (Function)
+
+- Does nothing if AffirmError wasn't raised.
+- Crashes if AffirmError was raised.
+- Prints the result of the function. (|Status-code|: function_name)
+```py
+
+@test
+def test_function_1():
+    result = function_to_be_tested(1, 5) # result is 6
+    affirm(result > 0) # Is True, does nothing
+    affirm_eq(result, 6) # Is equal, does nothing
+
+@test
+def test_function_2():
+    result = function_to_be_tested(1, 5) # result is 6
+    affirm(result > 0) # Is True, does nothing
+    affirm_eq(result, 11) # Is not equal, crashes
+
+test_function_1() # Will print: "|OK|
+test_function_2() 
+
+```
+
+
+

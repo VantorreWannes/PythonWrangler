@@ -1,1 +1,2 @@
-__all__ = ['affirms', 'test_decorator']
+from affirms import affirm, affirm_eq, affirm_ne
+from test_decorator import test
