@@ -1,7 +1,6 @@
 import sys
 sys.path.extend(["src", "src\python_wrangler"])
 from python_wrangler import affirm, affirm_eq, affirm_ne, test
-import inspect
 
 
 
