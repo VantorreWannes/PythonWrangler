@@ -14,7 +14,7 @@ def first_test_function():
 @test
 def second_test_function():
     affirm(True)
-    affirm(1+10 < 11)
+    #affirm(False)
 
 
 @test
@@ -24,14 +24,18 @@ class FunctionToBeTestedTests(object):
         pass
 
     @test
-    def first_test_function(self):
+    def third_test_function(self):
         affirm(True)
 
     @test
-    def second_test_function(self):
+    def fourth_test_function(self):
         affirm(True)
         affirm(False)
 
 
 if __name__ == "__main__":
+    first_test_function()
+    second_test_function()
+    FunctionToBeTestedTests().third_test_function()
     FunctionToBeTestedTests().test_all()
+    
