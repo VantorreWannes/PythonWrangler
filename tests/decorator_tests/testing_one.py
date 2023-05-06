@@ -1,30 +1,5 @@
 from functools import wraps
 
-# def doublewrap(f):
-#     @wraps(f)
-#     def new_dec(*args, **kwargs):
-#         if len(args) == 1 and len(kwargs) == 0 and callable(args[0]):
-#             return f(args[0])
-#         else:
-#             return lambda realf: f(realf, *args, **kwargs)
-#     return new_dec
-
-# @doublewrap
-# def make_pretty(func):
-#     def inner():
-#         print("I got decorated")
-#         func()
-#     return inner
-
-# @make_pretty()
-# def ordinary():
-#     print("I am ordinary")
-
-
-# @make_pretty
-# def ordinary_too():
-#     print("I am ordinary")
-
 # GOAL 1:
 #     @test
 #     def test_func(self, value):
@@ -38,27 +13,34 @@ from functools import wraps
 #         return value
 
 
-def make_special(func):
-    @wraps(func)
-    def inner(*args, **kwargs):  # To allow automatic func input
-        print("Decorating...")
-        return func(*args, **kwargs)  #4
-    return inner  #2
 
+def decorator_factory(*args, **kwargs):
+    def actual_decorator(boolean_1=False, boolean_2=False):
+        def wrapper(func):
+            @wraps(func)
+            def inner_wrapper(*func_args, **func_kwargs):
+                print(boolean_1, boolean_2)
+                result = func(*func_args, **func_kwargs)
+                return result
+            return inner_wrapper
+        return wrapper
 
-@make_special  #1
+    if len(args) == 1 and callable(args[0]):
+        return actual_decorator(False, False)(args[0])
+    else:
+        return actual_decorator(*args, **kwargs)
+
+@decorator_factory
 def decorated(value):
-    print("I am decorated!")  
-    return value  #5
+    print("I am decorated!")
+    return value
 
-def undecorated(value):
-    print("I am undecorated!")  
-    return value  #5
+@decorator_factory(True)
+def decorated_with_arguments(a, b):
+    print("I am decorated with arguments!")
+    return a + b
 
 
 if __name__ == "__main__":
-    value = decorated("OK decorated")  #3
-    print(value, end="\n\n")  #6
-    value = make_special(undecorated)("OK undecorated")
-    print(value, end="\n\n")
-
+    value = decorated_with_arguments(1, 5)
+    print(f"Value: {value}", end="\n\n")
