@@ -1,19 +1,17 @@
 from _affirm_error import AffirmError
+from functools import wraps
+from operator import methodcaller as mc
 
 
-def raises(function: object, expected_exception: Exception, *args, **kwargs):
-    """
-    Checks if the raised error from the first parameter is equal to the expected exception.
-    Checks for type if expected_exception is a type.
-    Checks for equality if expected_exception is initiated.
-    """
+def raises(lambda_func, error_type: Exception):
     try:
-        function(*args, **kwargs)
-    except BaseException as e:
-        if isinstance(expected_exception, type):
-            return isinstance(e, expected_exception)
-        else:
-            return isinstance(e, type(expected_exception)) and e.args == expected_exception.args
+        lambda_func()
+        return False
+    except error_type as e:
+        return True
+    except Exception:
+        return False
+
 
 def affirm(contition: bool):
     if not isinstance(contition, bool):
