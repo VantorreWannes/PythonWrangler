@@ -1,5 +1,3 @@
-import sys
-sys.path.append(r"src\python_wrangler")
 from _affirm_error import AffirmError
 
 
