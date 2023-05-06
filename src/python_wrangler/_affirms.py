@@ -3,9 +3,9 @@ from functools import wraps
 from operator import methodcaller as mc
 
 
-def raises(lambda_func, error_type: Exception):
+def raises(func, error_type: Exception):
     try:
-        lambda_func()
+        func()
         return False
     except error_type as e:
         return True
