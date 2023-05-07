@@ -38,6 +38,13 @@ affirm_ne(5, 10) # Does nothing
 ### `Test`
 The test decorator applies both its settings to the wrapped object. (Class, method, function)
 Those settings are:
-- crash_on_false; Which decides if an AffirmError from the affirm functions should be raised again or neglected.
-- verbose; Which decides if it should print out the result of the wrapped object or not. (OK or ER + obj path)
-Test objects can have Explicit or unexplicit settings. 
+  - crash_on_false; Which decides if an AffirmError from the affirm functions should be raised again or neglected.
+  - verbose; Which decides if it should print out the result of the wrapped object or not. (OK or ER + obj path)
+
+The test objects can have explicit or unexplicit settings. <br>
+Settings are explicit if they are manually set in the test decorator call.
+Settings are unexplicit if they are left out, or no brackets are provided all together.
+Decorator setting priority works like this:
+  - If a setting is explicit all settings of the same type underneath are set to that value.
+  - The topmost call gets priority to set explicit settings first.
+  - if settings are inexplicit they are set to their default value unless overwritten by higher level settings. (Default value is True for both settings) 
