@@ -2,11 +2,11 @@ import sys
 sys.path.extend(["src/python_wrangler"])
 from abc import ABC, abstractmethod
 from _affirm_error import AffirmError
-from _settings import TestSettings
+from _settings import TestTypeSettings
 
 class TestTypeIterface(ABC):
 
-    def __init__(self, func, settings: TestSettings) -> None:
+    def __init__(self, func, settings: TestTypeSettings) -> None:
         self._func = func
         self._function_path = self._get_function_path()
         self.settings = settings
@@ -20,15 +20,13 @@ class TestTypeIterface(ABC):
         pass
 
     def _failed(self, err: AffirmError):
-        crash_on_false, verbose = self.settings.with_defaults(True, True)
-        if verbose:
+        if self.settings.get_or("verbose", True):
             self._print_result("ER")
-        if crash_on_false:
+        if self.settings.get_or("crash_on_false", True):
             raise err.get_trunicated_error(2)
     
     def _success(self):
-        _, verbose = self.settings.with_defaults(True, True)
-        if verbose:
+        if self.settings.get_or("verbose", True):
             self._print_result("OK")
     
     @abstractmethod

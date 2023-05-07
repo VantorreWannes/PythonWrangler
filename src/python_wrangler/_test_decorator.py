@@ -6,11 +6,11 @@ from functools import wraps
 from _test_class import TestClass
 from _test_function import TestFunction
 from _test_method import TestMethod
-from _settings import TestSettings
+from _settings import TestTypeSettings
 
 def test(*args, **kwargs):
     def parms_wrapper(crash_on_false=None, verbose=None):
-        settings = TestSettings(crash_on_false, verbose)
+        settings = TestTypeSettings((("crash_on_false", crash_on_false), ("verbose", verbose)))
         def wrapper(obj):
             if inspect.isclass(obj):
                 obj = TestClass(obj, settings)

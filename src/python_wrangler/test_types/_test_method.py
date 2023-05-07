@@ -3,11 +3,11 @@ import sys
 sys.path.extend(["src/python_wrangler"])
 from _affirm_error import AffirmError
 from _test_type_interface import TestTypeIterface
-from _settings import TestSettings
+from _settings import TestTypeSettings
 
 class TestMethod(TestTypeIterface):
 
-    def __init__(self, func, settings: TestSettings) -> None:
+    def __init__(self, func, settings: TestTypeSettings) -> None:
         super().__init__(func, settings)
 
     def __getattr__(self, name):

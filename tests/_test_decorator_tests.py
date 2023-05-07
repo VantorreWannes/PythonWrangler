@@ -13,7 +13,7 @@ def test_function_two(value=0):
     affirm(True)
     return value+1
 
-@test
+@test(True)
 class TestClass:
 
     def __init__(self) -> None:
@@ -31,17 +31,12 @@ class TestClass:
 
 
 if __name__ == "__main__":
-    print("FUNCTIONS:", end="\n\n")
+    print("\n\nFUNCTIONS:")
     function_one_value = test_function_one(0)
     function_two_value = test_function_two(1)
-    print(f"function_one_value: {function_one_value}")
-    print(f"function_two_value: {function_two_value}")
-    print("METHODS:", end="\n\n")
+    print("\n\nTEST_ALL:")
+    print("\n\nMETHODS:")
     TEST_CLASS = TestClass()
     method_one_value = TEST_CLASS.test_method_one(0)
     method_two_value = TEST_CLASS.test_method_two(1)
-    print(f"method_one_value: {method_one_value}")
-    print(f"method_two_value: {method_two_value}")
-    print("TEST_ALL:", end="\n\n")
     TestClass().test_all()
-    
