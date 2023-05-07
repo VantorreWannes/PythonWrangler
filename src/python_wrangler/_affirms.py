@@ -6,10 +6,11 @@ from operator import methodcaller as mc
 def raises(func, error_type: Exception):
     try:
         func()
-        return False
-    except error_type as e:
+    except error_type:
         return True
     except Exception:
+        return False
+    else:
         return False
 
 

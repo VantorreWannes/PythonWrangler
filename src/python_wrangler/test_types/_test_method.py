@@ -6,7 +6,7 @@ from _test_type_interface import TestTypeIterface
 
 class TestMethod(TestTypeIterface):
 
-    def __init__(self, func, crash_on_false: bool, verbose: bool) -> None:
+    def __init__(self, func, crash_on_false: bool=True, verbose: bool=True) -> None:
         super().__init__(func, crash_on_false, verbose)
 
     def __getattr__(self, name):
@@ -21,7 +21,7 @@ class TestMethod(TestTypeIterface):
 
     def test(self, *args, **kwargs):
         try:
-            return_value = self._func(*args, **kwargs)
+            return_value = self._func(self._func, *args, **kwargs)
         except AffirmError as err:
             self._failed(err)
             return None
