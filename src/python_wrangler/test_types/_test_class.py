@@ -6,9 +6,11 @@ import inspect
 
 class TestClass:
 
-    def __init__(self, cls) -> None:
+    def __init__(self, cls, crash_on_false: bool, verbose: bool) -> None:
         self._cls = cls
         self._test_methods = self._get_test_methods()
+        self.crash_on_false = crash_on_false
+        self.verbose = verbose
 
     def __getattr__(self, name):
         return getattr(self._cls, name)
@@ -27,10 +29,6 @@ class TestClass:
 
     def _get_test_methods(self):
         return [method for method in self._cls.__dict__.values() if self.__is_test_method(method) and self.__has_no_parameters(method)]
-
-
-def class_wrapper(cls):
-    return TestClass(cls)
 
 
 if __name__ == "__main__":

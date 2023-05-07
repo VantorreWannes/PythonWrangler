@@ -13,8 +13,7 @@ from functools import wraps
 #         return value
 
 
-
-def decorator_factory(*args, **kwargs):
+def decorator(*args, **kwargs):
     def actual_decorator(boolean_1=False, boolean_2=False):
         def wrapper(func):
             @wraps(func)
@@ -30,17 +29,17 @@ def decorator_factory(*args, **kwargs):
     else:
         return actual_decorator(*args, **kwargs)
 
-@decorator_factory
-def decorated(value):
-    print("I am decorated!")
-    return value
+@decorator
+def decorated_no_arguments():
+    print("I am decorated with no arguments!")
 
-@decorator_factory(True)
+@decorator(True)
 def decorated_with_arguments(a, b):
     print("I am decorated with arguments!")
     return a + b
 
 
+
 if __name__ == "__main__":
     value = decorated_with_arguments(1, 5)
-    print(f"Value: {value}", end="\n\n")
+    print(f"Value: {value}")

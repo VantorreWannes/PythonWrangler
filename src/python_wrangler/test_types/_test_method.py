@@ -24,12 +24,10 @@ class TestMethod(TestTypeIterface):
             return_value = self._func(*args, **kwargs)
         except AffirmError as err:
             self._failed(err)
+            return None
         else:
             self._success()
         return return_value
-
-def method_wrapper(func):
-    return TestMethod(func, True, True)
     
 if __name__ == "__main__":
     pass
