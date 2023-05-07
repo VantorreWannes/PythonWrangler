@@ -17,77 +17,29 @@ Import the commands from the package as follows.<br>
 ```py
 from python_wrangler import affirm, affirm_eq, affirm_ne, test
 ```
-### `Info:`
-For clarity's sake; I'll be using this definition of function_to_be_tested to run our tests on.
+
+### `Affirm`
+The affirm functions are quite easy to use and understand.
+- Affirm(condition) crashes if the condition equates to False, and does nothing on True.
+- affirm_eq checks if the 2 parameters are equal, and crashes if they are not equal.
+- Affirm_ne checks if the 2 parameters are *not* equal, and crashes if they are equal
+
 ```py
-def function_to_be_tested(left, right):
-    return left + right
+affirm(3 == 3) # Does nothing
+affirm(2 == 3) # Raises AffirmError
+
+affirm_eq("Test", "Test") # Does nothing
+affirm_eq("Hi", "Test") # Raises AffirmError
+
+affirm_ne(10, 10) # Raises AffirmError
+affirm_ne(5, 10) # Does nothing
 ```
 
-**All examples from now on have this code attached.** <br>
-*These 4 lines have been left out of each following example.*
-```py
-from python_wrangler import affirm, affirm_eq, affirm_ne, test
-
-def function_to_be_tested(left, right):
-    return left + right
-```
-
-### `affirm:`
-- Does nothing if the statement equates to True.
-- Crashes if the statement equates to False. (Raises AffirmError)
-- Doesn't log anything.
-```py
-result = function_to_be_tested(1, 5) # result is 6
-affirm(result > 5) # Is True, does nothing
-affirm(result == 6) # Is True, does nothing
-affirm(result < 0) # Is False, crashes
-```
-
-### `affirm_eq:`
-- Does nothing if the 2 statements are equal.
-- Crashes if the 2 statements are not equal. (Raises AffirmError)
-- Doesn't log anything.
-```py
-result = function_to_be_tested(1, 5) # result is 6
-affirm_eq(result, 6) # Is equal, does nothing
-affirm_eq(result, 10) # Is not equal, crashes
-```
-
-### `affirm_ne:`
-- Opposite of `affirm_eq`.
-- Does nothing if the 2 statements are not equal.
-- Crashes if the 2 statements are equal. (Raises AffirmError)
-- Doesn't log anything.
-```py
-result = function_to_be_tested(1, 5) # result is 6
-affirm_ne(result, 10) # Is not equal, does nothing
-affirm_ne(result, 6) # Is equal, crashes
-```
-
-### `@test:` (Function)
-
-- Does nothing if AffirmError wasn't raised.
-- Crashes if AffirmError was raised.
-- Prints the result of the function. (|Status-code|: function_name)
-```py
-
-@test
-def test_function_1():
-    result = function_to_be_tested(1, 5) # result is 6
-    affirm(result > 0) # Is True, does nothing
-    affirm_eq(result, 6) # Is equal, does nothing
-
-@test
-def test_function_2():
-    result = function_to_be_tested(1, 5) # result is 6
-    affirm(result > 0) # Is True, does nothing
-    affirm_eq(result, 11) # Is not equal, crashes
-
-test_function_1() # Will print: "|OK|
-test_function_2() 
-
-```
-
-
-
+### `Test`
+The test decorator transforms your function, method or class into a test object
+- When applied to a `function` or `method`:
+  - Crashes if AffirmError is raised.
+  - Prints status of function in console after running.
+  - default parameters `crash_on_false=True` and `verbose=True` can be toggled.
+- when applied to `class`:
+  - Crashes if AffirmError is raised.
