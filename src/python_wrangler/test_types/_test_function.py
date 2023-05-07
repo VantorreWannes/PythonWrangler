@@ -1,11 +1,12 @@
 from functools import wraps
 from _affirm_error import AffirmError
 from _test_type_interface import TestTypeIterface
+from _settings import TestSettings
 
 class TestFunction(TestTypeIterface):
 
-    def __init__(self, func, crash_on_false: bool, verbose: bool) -> None:
-        super().__init__(func, crash_on_false, verbose)
+    def __init__(self, func, settings: TestSettings) -> None:
+        super().__init__(func, settings)
 
     def __getattr__(self, name):
         return getattr(self._func, name)
