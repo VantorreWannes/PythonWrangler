@@ -2,7 +2,6 @@ from _test_method import TestMethod
 from _affirm_error import AffirmError
 import inspect
 from _settings import TestSettings
-from _settings import TestSettings
 
 
 class TestClass():

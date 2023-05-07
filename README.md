@@ -36,10 +36,8 @@ affirm_ne(5, 10) # Does nothing
 ```
 
 ### `Test`
-The test decorator transforms your function, method or class into a test object
-- When applied to a `function` or `method`:
-  - Crashes if AffirmError is raised.
-  - Prints status of function in console after running.
-  - default parameters `crash_on_false=True` and `verbose=True` can be toggled.
-- when applied to `class`:
-  - Crashes if AffirmError is raised.
+The test decorator applies both its settings to the wrapped object. (Class, method, function)
+Those settings are:
+- crash_on_false; Which decides if an AffirmError from the affirm functions should be raised again or neglected.
+- verbose; Which decides if it should print out the result of the wrapped object or not. (OK or ER + obj path)
+Test objects can have Explicit or unexplicit settings. 

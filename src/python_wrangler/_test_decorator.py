@@ -22,7 +22,7 @@ def test(*args, **kwargs):
         return wrapper
 
     if len(args) == 1 and callable(args[0]):
-        return parms_wrapper(None, None)(args[0])
+        return parms_wrapper()(args[0])
     else:
         return parms_wrapper(*args, **kwargs)
 
