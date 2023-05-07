@@ -1,7 +1,6 @@
 import sys
 import types
 
-
 class AffirmError(Exception):
 
     def __init__(self, *args: object) -> None:
