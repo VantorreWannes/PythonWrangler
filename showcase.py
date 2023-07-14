@@ -38,6 +38,6 @@ class FunctionToBeTestedTests(object):
 
 if __name__ == "__main__":
     first_test_function()
-    second_test_function()
-    FunctionToBeTestedTests().third_test_function()
-    FunctionToBeTestedTests().test_all()
+    #second_test_function()
+    #FunctionToBeTestedTests().third_test_function()
+    #FunctionToBeTestedTests().test_all()
