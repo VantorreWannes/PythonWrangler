@@ -2,7 +2,6 @@ import inspect
 import sys
 import types
 sys.path.extend(["src/python_wrangler/test_types"])
-from functools import wraps
 from _test_class import TestClass
 from _test_function import TestFunction
 from _test_method import TestMethod

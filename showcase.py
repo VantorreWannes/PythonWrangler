@@ -3,41 +3,42 @@ sys.path.extend(["src", "src\python_wrangler"])
 from python_wrangler import affirm, affirm_eq, affirm_ne, test
 
 
-
-def function_to_be_tested(left, right):
-    return left + right
-
-
-@test
-def first_test_function():
-    affirm(True)
+def add_plus_one(left: int):
+    return left + 1
 
 
 @test
-def second_test_function():
-    affirm(True)
-    affirm(False)
+def test_function():
+    #Checks to see if the statement resolves to True.
+    affirm(add_plus_one(0) < 2)
+    #Checks for equality.
+    affirm_eq(1, 1)
+    #Checks for non-equality.
+    affirm_ne(1, 2)
 
+#Here crash_on_false is set to False and verbose is set to True. 
+#Since the test methods are inside the scope of the class, the test methods don't crash on false.
+@test(False, True) 
+class TestClass(object):
 
-@test
-class FunctionToBeTestedTests(object):
-
-    def __init__(self) -> None:
-        pass
-
-    @test
-    def third_test_function(self):
+    @test()
+    def test_method(self):
         affirm(True)
+        affirm_eq(1, 1)
+        affirm_ne(1, 2)
+
+    #Here crash_on_false is explicitly set to True but it doesn't matter because it has been overwritten by TestClass's test settings. 
+    @test(True, True)
+    def other_test_method(self):
         affirm(False)
-
-    @test
-    def fourth_test_function(self):
-        affirm(True)
+        
+    #This method doesn't have a test decorator so it doesn't get recognised as a test function. The affirms inside this method will work with default behavior.
+    def unaffected(self):
         affirm(False)
 
 
 if __name__ == "__main__":
-    first_test_function()
-    #second_test_function()
-    #FunctionToBeTestedTests().third_test_function()
-    #FunctionToBeTestedTests().test_all()
+    test_function()
+    TestClass().test_method()
+    TestClass().test_all()
+    #TestClass().unaffected()
