@@ -40,5 +40,5 @@ class TestClass(object):
 if __name__ == "__main__":
     test_function()
     TestClass().test_method()
-    TestClass().test_all()
+    TestClass().test_all() #Test all can be used to test all test methods inside of a test class.
     #TestClass().unaffected()
