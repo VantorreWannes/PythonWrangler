@@ -1,4 +1,4 @@
-class TestableSettings:
+class TestableTypeSettings:
 
     def __init__(self, settings: tuple[tuple[str, None]]) -> None:
         self._settings = dict((name, value) for name, value in settings)
