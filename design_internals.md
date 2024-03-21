@@ -1,7 +1,7 @@
 # PythonWrangler
 
 ## Feature functions:
-- `raised(func, *args, **kwargs)`  #returns ExceptionType 
+- `raised(expected_exception)` #asserts that it catches an exception of type expected_exception
 - `affirm(case)`  #asserts case equates to True and raises AffirmError on False
 - `affirm_eq(case_1, case_2)`  #asserts case_1 and case_2 are equal and raises AffirmError if not
 - `affirm_ne(case_1, case_2)`  #asserts case_1 and case_2 are not equal and raises AffirmError if they are equal
