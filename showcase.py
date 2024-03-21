@@ -3,14 +3,13 @@ sys.path.extend(["src", "src\python_wrangler"])
 from python_wrangler import affirm, affirm_eq, affirm_ne, test
 
 
-def add_plus_one(left: int):
+def add_one(left: int):
     return left + 1
-
 
 @test
 def test_function():
     #Checks to see if the statement resolves to True.
-    affirm(add_plus_one(0) < 2)
+    affirm(add_one(0) < 2)
     #Checks for equality.
     affirm_eq(1, 1)
     #Checks for non-equality.
@@ -33,7 +32,7 @@ class TestClass(object):
         affirm(False)
         
     #This method doesn't have a test decorator so it doesn't get recognised as a test function. The affirms inside this method will work with default behavior.
-    def unaffected(self):
+    def unaffected_method(self):
         affirm(False)
 
 
@@ -41,4 +40,4 @@ if __name__ == "__main__":
     test_function()
     TestClass().test_method()
     TestClass().test_all() #Test all can be used to test all test methods inside of a test class.
-    #TestClass().unaffected()
+    #TestClass().unaffected_method()
