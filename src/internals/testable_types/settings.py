@@ -11,3 +11,6 @@ class TestableTypeSettings:
     
     def get_all(self):
         return tuple(setting for setting in self._settings.values())
+    
+if __name__ == "__main__":
+    pass

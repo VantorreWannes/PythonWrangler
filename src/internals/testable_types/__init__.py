@@ -1,3 +1,5 @@
+from testable_types.settings import TestableTypeSettings
+
 __all__ = [
-    "testable_type_settings"
+    "TestableTypeSettings"
 ]
