@@ -1,4 +1,4 @@
-from src import affirm, test
+from src.PythonWrangler import affirm, test
 
 @test
 def test_affirm_implicit():

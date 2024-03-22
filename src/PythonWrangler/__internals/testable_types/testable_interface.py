@@ -1,6 +1,10 @@
 from abc import ABC, abstractmethod
-from src.__internals.affirm_error import AffirmError
-from src.__internals.testable_types.testable_settings import TestableSettings
+
+from src.PythonWrangler.__internals.affirm_error import AffirmError
+from src.PythonWrangler.__internals.testable_types.testable_settings import (
+    TestableSettings,
+)
+
 
 class TestableIterface(ABC):
 
@@ -8,7 +12,7 @@ class TestableIterface(ABC):
         self._func = func
         self._function_path = self._get_function_path()
         self.settings = settings
-    
+
     def _get_function_path(self):
         function_path: str = self._func.__qualname__
         return [part for part in function_path.split(".")]
@@ -22,14 +26,15 @@ class TestableIterface(ABC):
             self._print_result("ER")
         if self.settings.get_or("crash_on_false", True):
             raise err.get_trunicated_error(2)
-    
+
     def _success(self):
         if self.settings.get_or("verbose", True):
             self._print_result("OK")
-    
+
     @abstractmethod
     def test(self):
         pass
+
 
 if __name__ == "__main__":
     pass

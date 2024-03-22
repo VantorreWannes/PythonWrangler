@@ -1,9 +1,13 @@
 import inspect
-from src.__internals.affirm_error import AffirmError
-from src.__internals.testable_types.testable_method import TestableMethod
-from src.__internals.testable_types.testable_settings import TestableSettings
 
-class TestableClass():
+from src.PythonWrangler.__internals.affirm_error import AffirmError
+from src.PythonWrangler.__internals.testable_types.testable_method import TestableMethod
+from src.PythonWrangler.__internals.testable_types.testable_settings import (
+    TestableSettings,
+)
+
+
+class TestableClass:
 
     def __init__(self, cls, settings: TestableSettings) -> None:
         self._cls = cls
@@ -19,17 +23,27 @@ class TestableClass():
     @staticmethod
     def __has_no_parameters(method):
         params = inspect.signature(method).parameters
-        result = len([param for param in params.values() if param.default == param.empty]) == 1
+        result = (
+            len([param for param in params.values() if param.default == param.empty])
+            == 1
+        )
         return result
 
     def _get_test_methods(self):
-        return [method for method in self._cls.__dict__.values() if isinstance(method, TestableMethod) and self.__has_no_parameters(method)]
+        return [
+            method
+            for method in self._cls.__dict__.values()
+            if isinstance(method, TestableMethod) and self.__has_no_parameters(method)
+        ]
 
     def _test_all(self):
         test_methods = self._get_test_methods()
         for method in test_methods:
             method_old_settings = method.settings
-            if self.settings.get_all() != (None, None) and method.settings.get_all() == (None, None):
+            if self.settings.get_all() != (
+                None,
+                None,
+            ) and method.settings.get_all() == (None, None):
                 method.settings = self.settings
             try:
                 method()
@@ -37,7 +51,7 @@ class TestableClass():
             except AffirmError as err:
                 method.settings = method_old_settings
                 raise err.get_trunicated_error(0)
-                
+
 
 if __name__ == "__main__":
     pass

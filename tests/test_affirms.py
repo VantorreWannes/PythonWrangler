@@ -1,4 +1,4 @@
-from src import affirm, affirm_ne, raises, affirm_eq, AffirmError
+from src.PythonWrangler import affirm, affirm_ne, raises, affirm_eq, AffirmError
 
 def add_one(left: int):
     return left + 1

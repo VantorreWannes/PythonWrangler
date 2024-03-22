@@ -1,5 +1,7 @@
 from contextlib import contextmanager
-from src.__internals.affirm_error import AffirmError
+
+from src.PythonWrangler.__internals.affirm_error import AffirmError
+
 
 @contextmanager
 def raises(expected_exception: Exception):
