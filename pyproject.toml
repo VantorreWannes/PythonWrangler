@@ -3,20 +3,23 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "python_wrangler"
-version = "0.0.1"
+name = "PythonWrangler"
+version = "1.5.0"
+dependencies = []
 authors = [
-  { name="Example Author", email="joknavi1@gmail.com" },
+  { name="Wannes Vantorre", email="VantorreWannes@gmail.com" },
 ]
-description = "A simplified unit testing library for python."
+description = "A down to earth easy to use python testing unit library."
 readme = "README.md"
 requires-python = ">=3.11"
 classifiers = [
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Topic :: Education :: Testing",
+    "Programming Language :: Python :: 3.11",
     "Operating System :: OS Independent",
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/JokNavi/PythonWrangler"
-"Bug Tracker" = "https://github.com/JokNavi/PythonWrangler/issues"
+Homepage = "https://github.com/VantorreWannes/PythonWrangler"
+Issues = "https://github.com/VantorreWannes/PythonWrangler/issues"

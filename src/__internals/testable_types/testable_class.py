@@ -1,15 +1,14 @@
-from _test_method import TestMethod
-from _affirm_error import AffirmError
 import inspect
-from _settings import TestTypeSettings
+from src.__internals.affirm_error import AffirmError
+from src.__internals.testable_types.testable_method import TestableMethod
+from src.__internals.testable_types.testable_settings import TestableSettings
 
+class TestableClass():
 
-class TestClass():
-
-    def __init__(self, cls, settings: TestTypeSettings) -> None:
+    def __init__(self, cls, settings: TestableSettings) -> None:
         self._cls = cls
         self.settings = settings
-        setattr(self._cls, "test_all", self._test_all)
+        self._cls.test_all = self._test_all
 
     def __getattr__(self, name):
         return getattr(self._cls, name)
@@ -24,13 +23,13 @@ class TestClass():
         return result
 
     def _get_test_methods(self):
-        return [method for method in self._cls.__dict__.values() if isinstance(method, TestMethod) and self.__has_no_parameters(method)]
+        return [method for method in self._cls.__dict__.values() if isinstance(method, TestableMethod) and self.__has_no_parameters(method)]
 
     def _test_all(self):
         test_methods = self._get_test_methods()
         for method in test_methods:
             method_old_settings = method.settings
-            if self.settings.get_all() != (None, None):
+            if self.settings.get_all() != (None, None) and method.settings.get_all() == (None, None):
                 method.settings = self.settings
             try:
                 method()

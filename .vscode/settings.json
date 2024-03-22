@@ -1,7 +1,0 @@
-{
-    "python.analysis.extraPaths": [
-        "./src/python_wrangler",
-        "./tests",
-        "./src/python_wrangler/test_types"
-    ]
-}

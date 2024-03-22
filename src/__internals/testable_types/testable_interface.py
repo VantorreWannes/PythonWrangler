@@ -1,12 +1,10 @@
-import sys
-sys.path.extend(["src/python_wrangler"])
 from abc import ABC, abstractmethod
-from _affirm_error import AffirmError
-from _settings import TestTypeSettings
+from src.__internals.affirm_error import AffirmError
+from src.__internals.testable_types.testable_settings import TestableSettings
 
-class TestTypeIterface(ABC):
+class TestableIterface(ABC):
 
-    def __init__(self, func, settings: TestTypeSettings) -> None:
+    def __init__(self, func, settings: TestableSettings) -> None:
         self._func = func
         self._function_path = self._get_function_path()
         self.settings = settings

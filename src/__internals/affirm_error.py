@@ -28,4 +28,4 @@ class AffirmError(Exception):
         return self.with_traceback(trunicated_traceback)
 
 if __name__ == "__main__":
-    raise AffirmError("Affirm returned False!").get_trunicated_error()
+    pass

@@ -1,11 +1,12 @@
-from functools import wraps
-from _affirm_error import AffirmError
-from _test_type_interface import TestTypeIterface
-from _settings import TestTypeSettings
 
-class TestFunction(TestTypeIterface):
+from src.__internals.affirm_error import AffirmError
+from src.__internals.testable_types.testable_interface import TestableIterface
+from src.__internals.testable_types.testable_settings import TestableSettings
 
-    def __init__(self, func, settings: TestTypeSettings) -> None:
+
+class TestableMethod(TestableIterface):
+
+    def __init__(self, func, settings: TestableSettings) -> None:
         super().__init__(func, settings)
 
     def __getattr__(self, name):
@@ -15,12 +16,12 @@ class TestFunction(TestTypeIterface):
         return self.test(*args, **kwargs)
     
     def _print_result(self, prefix: str):
-        function_path = "::".join(self._function_path)
-        print(f"|{prefix}|: {function_path}")
+        method_path = "::".join(self._function_path)
+        print(f"|{prefix}|: {method_path}")
 
     def test(self, *args, **kwargs):
         try:
-            return_value = self._func(*args, **kwargs)
+            return_value = self._func(self._func, *args, **kwargs)
         except AffirmError as err:
             self._failed(err)
             return None

@@ -1,4 +1,4 @@
-class TestTypeSettings:
+class TestableSettings:
 
     def __init__(self, settings: tuple[tuple[str, None]]) -> None:
         self._settings = dict((name, value) for name, value in settings)
@@ -11,3 +11,6 @@ class TestTypeSettings:
     
     def get_all(self):
         return tuple(setting for setting in self._settings.values())
+    
+if __name__ == "__main__":
+    pass
