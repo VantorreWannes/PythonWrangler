@@ -16,9 +16,8 @@ def test(*args, **kwargs):
     Settings are explicit if they are manually set in the test decorator call.
     Settings are unexplicit if they are left out, or no brackets are provided all together.
     Test decorator setting priority works like this:
-        - If a setting is explicit all settings of the same type underneath are set to that value.
-        - The topmost call gets priority to set explicit settings first.
-        - if settings are inexplicit they are set to their default value unless overwritten by higher level settings. (Default value is True for both settings)
+        - Higher level settings take precedence over lower level settings.
+        - Explicit settings override unexplicit ones.
     """
 
     def parms_wrapper(crash_on_false=None, verbose=None):
