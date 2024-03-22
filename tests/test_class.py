@@ -1,4 +1,4 @@
-from src import affirm, test
+from src import affirm, test, raises, AffirmError
 
 @test(False, True)
 class TestClass(object):
@@ -9,7 +9,8 @@ class TestClass(object):
 
     @test(True, True)
     def other_test_method(self):
-        affirm(1 == 0)
+        with raises(AffirmError):
+            affirm(1 == 0)
 
     def undetected_method(self):
         affirm(1 == 0)

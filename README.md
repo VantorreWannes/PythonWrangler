@@ -39,12 +39,11 @@ Those settings are:
     - crash_on_false; Which decides if an AffirmError from the affirm functions should be raised again or neglected.
     - verbose; Which decides if it should print out the result of the wrapped object or not. (OK or ER + obj path)
 
-The test objects can have explicit or unexplicit settings.
+The test objects can have explicit or implicit settings.
 Settings are explicit if they are manually set in the test decorator call.
-Settings are unexplicit if they are left out, or no brackets are provided all together.
+Settings are implicit if they are left out, or no brackets are provided all together.
 Test decorator setting priority works like this:
-    - Higher level settings take precedence over lower level settings.
-    - Explicit settings override unexplicit ones.
+    - Higher level explicit settings take precedence over lower level implicit settings.
 
 ### `Showcase`
 
@@ -78,7 +77,7 @@ class TestClass(object):
         affirm_eq(1, 1)
         affirm_ne(1, 2)
 
-    #Here crash_on_false is explicitly set to True but it doesn't matter because it has been overwritten by TestClass's test settings. 
+    #This function overwrites TestClass' explicit don't-crash-on-affirm-error setting.
     @test(True, True)
     def other_test_method(self):
         affirm(1 == 2)

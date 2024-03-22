@@ -8,7 +8,7 @@ class TestableClass():
     def __init__(self, cls, settings: TestableSettings) -> None:
         self._cls = cls
         self.settings = settings
-        setattr(self._cls, "test_all", self._test_all)
+        self._cls.test_all = self._test_all
 
     def __getattr__(self, name):
         return getattr(self._cls, name)
@@ -29,7 +29,7 @@ class TestableClass():
         test_methods = self._get_test_methods()
         for method in test_methods:
             method_old_settings = method.settings
-            if self.settings.get_all() != (None, None):
+            if self.settings.get_all() != (None, None) and method.settings.get_all() == (None, None):
                 method.settings = self.settings
             try:
                 method()
