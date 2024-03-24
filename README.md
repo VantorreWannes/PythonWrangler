@@ -5,7 +5,7 @@ All tools provided in this package are designed to be easy to use and well suite
 
 ### `Dependencies`
 
-- Python 3.11
+- Python >=3.6
 
 # Examples
 Written below are some quick examples on each of the tools provided inside the PythonWrangler package.
