@@ -1,4 +1,4 @@
-from src.PythonWrangler import affirm, test, raises, AffirmError
+from PythonWrangler import affirm, test, raises, AffirmError
 
 @test(False, True)
 class TestClass(object):

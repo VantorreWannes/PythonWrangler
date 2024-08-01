@@ -1,9 +1,9 @@
 import inspect
 
-from src.PythonWrangler.__internals.testable_types.testable_class import TestableClass
-from src.PythonWrangler.__internals.testable_types.testable_function import TestableFunction
-from src.PythonWrangler.__internals.testable_types.testable_method import TestableMethod
-from src.PythonWrangler.__internals.testable_types.testable_settings import TestableSettings
+from PythonWrangler.__internals.testable_types.testable_class import TestableClass
+from PythonWrangler.__internals.testable_types.testable_function import TestableFunction
+from PythonWrangler.__internals.testable_types.testable_method import TestableMethod
+from PythonWrangler.__internals.testable_types.testable_settings import TestableSettings
 
 
 

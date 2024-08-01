@@ -1,6 +1,6 @@
 from contextlib import contextmanager
 
-from src.PythonWrangler.__internals.affirm_error import AffirmError
+from PythonWrangler.__internals.affirm_error import AffirmError
 
 
 @contextmanager

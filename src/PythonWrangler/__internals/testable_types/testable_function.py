@@ -1,8 +1,8 @@
-from src.PythonWrangler.__internals.affirm_error import AffirmError
-from src.PythonWrangler.__internals.testable_types.testable_interface import (
+from PythonWrangler.__internals.affirm_error import AffirmError
+from PythonWrangler.__internals.testable_types.testable_interface import (
     TestableIterface,
 )
-from src.PythonWrangler.__internals.testable_types.testable_settings import (
+from PythonWrangler.__internals.testable_types.testable_settings import (
     TestableSettings,
 )
 
