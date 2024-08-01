@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "PythonWrangler"
-version = "1.5.1"
+version = "1.5.2"
 dependencies = []
 authors = [
   { name="Wannes Vantorre", email="VantorreWannes@gmail.com" },
